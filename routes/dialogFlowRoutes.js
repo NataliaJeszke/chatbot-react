@@ -1,6 +1,6 @@
 const dialogflow = require("@google-cloud/dialogflow");
-require("dotenv").config();
 const express = require("express");
+
 const config = require("../config/keys");
 
 const sessionClient = new dialogflow.SessionsClient();
@@ -9,27 +9,29 @@ const sessionPath = sessionClient.sessionPath(
   config.dialogFlowSessionID
 );
 
-module.exports = (app) => {
-  app.get("/", (req, res) => {
-    res.send({ Hello: "World" });
-  });
+const router = express.Router();
 
-  app.post("/api/df_text_query", async (req, res) => {
-    const { query } = req.body;
-    const request = {
-      session: sessionPath,
-      queryInput: {
-        text: {
-          text: query,
-          languageCode: req.body.languageCode,
-        },
+router.get("/", (req, res) => {
+  res.send({ Hello: "World" });
+});
+
+router.post("/api/df_text_query", async (req, res) => {
+  const { query, languageCode } = req.body;
+  const request = {
+    session: sessionPath,
+    queryInput: {
+      text: {
+        text: query,
+        languageCode,
       },
-    };
-    let responses = await sessionClient.detectIntent(request);
-    res.send(responses[0].queryResult);
-  });
+    },
+  };
+  let responses = await sessionClient.detectIntent(request);
+  res.send(responses[0].queryResult);
+});
 
-  app.post("/api/df_event_query", (req, res) => {
-    res.send({ do: "event query" });
-  });
-};
+router.post("/api/df_event_query", (req, res) => {
+  res.send({ do: "event query" });
+});
+
+module.exports = router;

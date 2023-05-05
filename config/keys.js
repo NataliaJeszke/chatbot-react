@@ -1,5 +1,5 @@
 module.exports = {
-    googleProjectID:"librarian-ckuo",
+    googleProjectID: "librarian-ckuo",
     dialogFlowSessionID: "react-bot-session",
-    dialogFlowSessionLanguageCode: "pl-PL"
-}
+    dialogFlowSessionLanguageCode: "pl-PL",
+  };
