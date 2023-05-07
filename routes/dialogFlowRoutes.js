@@ -1,13 +1,3 @@
-// const dialogflow = require("@google-cloud/dialogflow");
-// const config = require("../config/keys");
-// const { query } = require("express");
-
-// const sessionClient = new dialogflow.SessionsClient();
-
-// const sessionPath = sessionClient.projectAgentSessionPath(
-//   config.googleProjectID,
-//   config.dialogFlowSessionID
-// );
 const chatbot = require('../chatbot/chatbot');
 
 module.exports = (app) => {

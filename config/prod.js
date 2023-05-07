@@ -1,6 +1,5 @@
 module.exports = {
     googleProjectID: process.env.GOOGLE_PROJECT_ID,
-    dialogFlowSessionID: "react-bot-session",
-    dialogFlowSessionLanguageCode: "pl-PL",
-    userId: "100996922421257043917"
+    dialogFlowSessionID:  process.env.DIALOGFLOW_SESSION_ID,
+    dialogFlowSessionLanguageCode: process.env.DIALOGFLOW_LANGUAGE_CODE,
   };
