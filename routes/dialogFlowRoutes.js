@@ -20,7 +20,12 @@ module.exports = (app) => {
     res.send(responses[0].queryResult);
   });
 
-  app.post("/api/df_event_query", (req, res) => {
-    res.send({ do: "event query" });
+  app.post("/api/df_event_query", async (req, res) => {
+    let response = await chatbot.eventQuery({
+      event: req.body.event,
+      userID: req.body.userID,
+      parameters: req.body.parameters,
+    });
+    res.json({ response: response[0].queryResult });
   });
 };
