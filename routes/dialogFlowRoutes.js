@@ -1,13 +1,14 @@
-const dialogflow = require("@google-cloud/dialogflow");
-const config = require("../config/keys");
-const { query } = require("express");
+// const dialogflow = require("@google-cloud/dialogflow");
+// const config = require("../config/keys");
+// const { query } = require("express");
 
-const sessionClient = new dialogflow.SessionsClient();
+// const sessionClient = new dialogflow.SessionsClient();
 
-const sessionPath = sessionClient.projectAgentSessionPath(
-  config.googleProjectID,
-  config.dialogFlowSessionID
-);
+// const sessionPath = sessionClient.projectAgentSessionPath(
+//   config.googleProjectID,
+//   config.dialogFlowSessionID
+// );
+const chatbot = require('../chatbot/chatbot');
 
 module.exports = (app) => {
   app.get("/", (req, res) => {
@@ -15,17 +16,7 @@ module.exports = (app) => {
   });
 
   app.post("/api/df_text_query", async (req, res) => {
-    const request = {
-      session: sessionPath,
-      queryInput: {
-        text: {
-          text: req.body.text,
-          languageCode: config.dialogFlowSessionLanguageCode,
-        },
-      },
-    };
-
-    let responses = await sessionClient.detectIntent(request);
+    let responses = await chatbot.textQuery(req.body.text, req.body.userID, req.body.parameters);
     res.send(responses[0].queryResult);
   });
 
