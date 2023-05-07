@@ -5,7 +5,14 @@ const { query } = require("express");
 const structjson = require("./structjson.js");
 // const  struct = require("pb-util");
 
-const sessionClient = new dialogflow.SessionsClient();
+const projectID = config.googleProjectID;
+
+const credentials = {
+  client_email: config.googleClientEmail,
+  private_key: config.googlePrivateKey,
+}
+
+const sessionClient = new dialogflow.SessionsClient({projectID: projectID, credentials: credentials});
 
 const sessionPath = sessionClient.projectAgentSessionPath(
   config.googleProjectID,
