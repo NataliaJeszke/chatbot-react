@@ -9,7 +9,9 @@
   },
   "scripts": {
     "start": "node index.js",
-    "backend": "nodemon index.js"
+    "backend": "nodemon index.js",
+    "frontend": "npm run start --prefix chatbot-client",
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix chatbot-client\""
   },
   "author": "Natalia Jeszke",
   "license": "ISC",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@types/uuid": "^9.0.1",
+    "concurrently": "^8.0.1",
     "nodemon": "^2.0.22"
   }
 }
