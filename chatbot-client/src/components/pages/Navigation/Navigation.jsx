@@ -1,10 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navigation.css";
 
 export function Navigation() {
   return (
-    <nav className="nav">
-      <ul className="menu">
+    <nav className="nav-wrapper active purple lighten-1">
+      <Link to="/" className="nav-title">
+        Librarian
+      </Link>
+      <ul id="nav-mobile" className="right">
         <li>
           <NavLink exact to="/">
             Home

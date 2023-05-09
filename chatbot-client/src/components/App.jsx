@@ -5,23 +5,28 @@ import { Contact } from "./pages/Contact/Contact";
 import { Header } from "./pages/Header/Header";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import { Chatbot } from "./Chatbot/Chatbot";
 
 export function App() {
   return (
-    <div>
+    <div className="center-align purple darken-2">
       <div className="nav-container">
         <Header />
       </div>
-      <div className="container">
-        <div>
-          <Routes>
-          <Route path="/" element={<Landing />} index={true} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </div>
-        <div>
-          <Landing />
+      <div className="row">
+        <div className="col s12 m8 offset-m2 l6 offset-l3 purple lighten-4">
+          <div className="container">
+            <div className="box">
+              <Routes>
+                <Route path="/" element={<Landing />} index={true} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </div>
+            <div className="box">
+              <Chatbot />
+            </div>
+          </div>
         </div>
       </div>
     </div>

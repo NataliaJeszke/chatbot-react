@@ -1,9 +1,8 @@
-.header-container{
+.nav-wrapper{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: aquamarine;
 }
 
 .nav-title{

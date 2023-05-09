@@ -5,4 +5,10 @@
     align-items: center;
     text-align: justify;
     margin-right: 10px;
+    width: 500px;
+}
+
+h1{
+    font-size: 40px;
+    text-align: center;
 }
