@@ -1,7 +1,7 @@
 body {
     background-color: #7b1fa2;
 }
-.container{
+.container-chat{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -9,14 +9,13 @@ body {
     padding: 50px;
     justify-content: center !important;
     align-items: center !important;
-    width: fit-content !important;
 }
 
 .nav-container{
     margin-bottom: 20px;
 }
 
-/* .box {
-    width: 50%;
-    height: auto;
-} */
+
+.box-chatbot{
+    width: 700px;
+}
