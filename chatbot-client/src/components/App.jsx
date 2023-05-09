@@ -1,8 +1,8 @@
 import React from "react";
 import { Landing } from "./pages/Landing/Landing";
-import { Navigation } from "./pages/Navigation/Navigation";
 import { About } from "./pages/About/About";
 import { Contact } from "./pages/Contact/Contact";
+import { Header } from "./pages/Header/Header";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -10,7 +10,7 @@ export function App() {
   return (
     <div>
       <div className="nav-container">
-      <Navigation />
+        <Header />
       </div>
       <div className="container">
         <div>

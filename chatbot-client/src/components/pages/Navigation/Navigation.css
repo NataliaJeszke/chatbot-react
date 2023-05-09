@@ -1,13 +1,6 @@
 .nav{
-    background-color: aquamarine;
     display: flex;
     justify-content: space-around;
-}
-
-.nav-title{
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .menu{

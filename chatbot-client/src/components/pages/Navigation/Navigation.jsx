@@ -4,9 +4,6 @@ import "./Navigation.css";
 export function Navigation() {
   return (
     <nav className="nav">
-      <a href="/" className="nav-title">
-        Librarian
-      </a>
       <ul className="menu">
         <li>
           <NavLink exact to="/">
