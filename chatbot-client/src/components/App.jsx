@@ -6,6 +6,7 @@ import { Header } from "./pages/Header/Header";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Chatbot } from "./Chatbot/Chatbot";
+import VideoBg from "../../src/assets/video-bg1.mp4";
 
 export function App() {
   return (
@@ -14,7 +15,21 @@ export function App() {
         <Header />
       </div>
         <div className="valign-wrapper center-align">
-        <div className="container-chat">
+        <div className="container-chat" style={{ position: "relative" }}>
+          <video
+            autoPlay
+            loop
+            muted
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              zIndex: "-1",
+            }}
+          >
+            <source src={VideoBg} type="video/mp4" />
+          </video>
             <div className="box">
               <Routes>
                 <Route path="/" element={<Landing />} exact="true" />
