@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Message } from "./Message";
 
@@ -11,7 +11,7 @@ export function Chatbot() {
 
   async function df_text_query(userText) {
     let says = {
-      speaks: "user",
+      speaks: "me",
       msg: {
         text: {
           text: userText,
@@ -22,34 +22,46 @@ export function Chatbot() {
     setMessage(() => [...messages, says]);
 
     const res = await axios.post("/api/df_text_query", { text: userText });
-    
+
     for (let msg of res.data.fulfillmentMessages) {
-        says = {
-            speaks: "librarian",
-            msg: msg,
-        };
-        setMessage(() => [...messages, says]);
+      says = {
+        speaks: "librarian",
+        msg: msg,
+      };
+      setMessage(() => [...messages, says]);
     }
+
+    setUserMsg("");
   }
 
   async function df_event_query(event) {
-    const res = await axios.post("/api/df_event_query", { event: event });
-    for (let msg of res.data.fulfillmentMessages) {
-        let says = {
-            speaks: "user",
-            msg: msg,
-        };
-        setMessage(() => [...messages, says]);
+    const res = await axios.post("/api/df_event_query", { event });
+    for (let msg of res.data.response.fulfillmentMessages) {
+      let says = {
+        speaks: "librarian",
+        msg: msg,
+      };
+      setMessage(() => [...messages, says]);
     }
   }
 
- function renderMessages(messages) {
+  useEffect(() => {
+    df_text_query("Cześć");
+  }, []);
+
+  function renderMessages(messages) {
     if (messages) {
-        return messages.map((message, i) => {
-            return <Message key={i} speaks={message.speaks} text={message.msg.text.text} />;
-        });
+      return messages.map((message, i) => {
+        return (
+          <Message
+            key={i}
+            speaks={message.speaks}
+            text={message.msg.text.text}
+          />
+        );
+      });
     } else {
-        return null;
+      return null;
     }
   }
 
