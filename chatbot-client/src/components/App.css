@@ -4,7 +4,6 @@ body {
 .container-chat{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     gap: 20px;
     padding: 50px;
     justify-content: center !important;
@@ -17,5 +16,5 @@ body {
 
 
 .box-chatbot{
-    width: 700px;
+    overflow: auto;
 }

@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "universal-cookie";
+import { v4 as uuid } from "uuid";
 import { Message } from "./Message";
 
 export function Chatbot() {
-  const [userMsg, setUserMsg] = useState("");
+  const [userText, setUserText] = useState("");
   const [messages, setMessage] = useState([]);
 
-  console.log(userMsg);
+  const cookies = new Cookies();
+  if (cookies.get("userID") === undefined) {
+    cookies.set("userID", uuid(), { path: "/" });
+  }
+  console.log(cookies.get("userID"));
+  console.log(userText);
   console.log(messages);
 
   async function df_text_query(userText) {
@@ -21,7 +28,10 @@ export function Chatbot() {
 
     setMessage(() => [...messages, says]);
 
-    const res = await axios.post("/api/df_text_query", { text: userText });
+    const res = await axios.post("/api/df_text_query", {
+      text: userText,
+      userID: cookies.get("userID"),
+    });
 
     for (let msg of res.data.fulfillmentMessages) {
       says = {
@@ -31,11 +41,14 @@ export function Chatbot() {
       setMessage(() => [...messages, says]);
     }
 
-    setUserMsg("");
+    setUserText("");
   }
 
   async function df_event_query(event) {
-    const res = await axios.post("/api/df_event_query", { event });
+    const res = await axios.post("/api/df_event_query", {
+      event,
+      userID: cookies.get("userID"),
+    });
     for (let msg of res.data.response.fulfillmentMessages) {
       let says = {
         speaks: "librarian",
@@ -72,14 +85,14 @@ export function Chatbot() {
         {renderMessages(messages)}
         <input
           type="text"
-          value={userMsg}
-          onChange={(event) => setUserMsg(event.target.value)}
+          value={userText}
+          onChange={(event) => setUserText(event.target.value)}
         />
         <button
           className="btn waves-effect waves-light purple darken-2"
           type="submit"
           name="action"
-          onClick={() => df_text_query(userMsg)}
+          onClick={() => df_text_query(userText)}
         >
           Submit
           <i class="material-icons right"></i>
