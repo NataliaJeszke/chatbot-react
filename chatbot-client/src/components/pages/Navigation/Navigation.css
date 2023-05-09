@@ -1,0 +1,29 @@
+.nav{
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+}
+
+li a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+ul {
+    list-style: none;
+}
