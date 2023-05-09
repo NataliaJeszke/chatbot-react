@@ -9,13 +9,14 @@ import { Chatbot } from "./Chatbot/Chatbot";
 
 export function App() {
   return (
-    <div className="purple darken-2">
+    <div className="center purple darken-2">
       <div className="nav-container">
         <Header />
       </div>
-      <div className="row">
-        <div className="col s12 m8 offset-m2 l6 offset-l3 purple lighten-4">
-          <div className="container-chat">
+      {/* <div className="row">
+        <div className="col s12 m8 offset-m2 l6 offset-l3 purple lighten-4"> */}
+        <div className="valign-wrapper center-align">
+        <div className="container-chat purple lighten-4">
             <div className="box">
               <Routes>
                 <Route path="/" element={<Landing />} index={true} />
@@ -28,7 +29,9 @@ export function App() {
             </div>
           </div>
         </div>
-      </div>
+          
+        {/* </div>
+      </div> */}
     </div>
   );
 }

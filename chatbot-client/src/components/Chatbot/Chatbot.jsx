@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import { v4 as uuid } from "uuid";
 import { Message } from "./Message";
+import "./Chatbot.css";
 
 export function Chatbot() {
   const [userText, setUserText] = useState("");
@@ -79,9 +80,9 @@ export function Chatbot() {
   }
 
   return (
-    <div className="chatbot-container">
+    <div className="chatbot-container purple lighten-1">
       <div className="chatbot">
-        <h2>Chatbot!</h2>
+        <h2>Hello Librarian!</h2>
         {renderMessages(messages)}
         <input
           type="text"

@@ -1,0 +1,18 @@
+.cards-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.single-msg{
+    display: flex;
+    gap: 20px;
+}
+
+.btn-floating{
+    width: fit-content !important;
+    padding: 10px !important;
+    height: auto !important;
+    margin-right: 5px !important;
+}

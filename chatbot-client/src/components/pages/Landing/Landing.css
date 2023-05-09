@@ -1,11 +1,10 @@
 .landing-container{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: justify;
-    margin-right: 10px;
-    width: 500px;
 }
 
 h1{
