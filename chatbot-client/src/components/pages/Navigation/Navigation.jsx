@@ -9,7 +9,7 @@ export function Navigation() {
       </Link>
       <ul id="nav-mobile" className="right">
         <li>
-          <NavLink exact to="/">
+          <NavLink to="/">
             Home
           </NavLink>
         </li>

@@ -85,6 +85,7 @@ export function Chatbot() {
         <h2>Hello Librarian!</h2>
         {renderMessages(messages)}
         <input
+        className="input-field"
           type="text"
           value={userText}
           onChange={(event) => setUserText(event.target.value)}
@@ -96,7 +97,7 @@ export function Chatbot() {
           onClick={() => df_text_query(userText)}
         >
           Submit
-          <i class="material-icons right"></i>
+          <i className="material-icons right"></i>
         </button>
       </div>
     </div>

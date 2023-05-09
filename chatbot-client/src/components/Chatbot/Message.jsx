@@ -7,7 +7,7 @@ export function Message(props) {
         <div className="row valign-wrapper single-msg">
           {props.speaks === "librarian" && (
             <div className="col s2">
-              <a class="btn-floating btn-large waves-effect waves-light red">
+              <a className="btn-floating btn-large waves-effect waves-light red">
                 {props.speaks}
               </a>
             </div>
@@ -19,7 +19,7 @@ export function Message(props) {
           </div>
           {props.speaks === "user" && (
             <div className="col s2">
-              <a class="btn-floating btn-large waves-effect waves-light red">
+              <a className="btn-floating btn-large waves-effect waves-light red">
                 {props.speaks}
               </a>
             </div>

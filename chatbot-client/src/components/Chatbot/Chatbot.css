@@ -4,13 +4,25 @@
     padding: 20px;
     overflow: auto; 
     float: right;
-
 }
 
 
 .chatbot{
-
     height: 100%;
     width: 100%;
     overflow: auto;
 }
+
+h2{
+    color: white;
+}
+
+input:focus {
+    border-bottom: 1px solid #f1caf8 !important;
+    box-shadow: 0 1px 0 0 #ecd7f0 !important;
+  }
+
+  input {
+    margin-top: 20px !important;
+    background-color: #f1caf84d !important;
+  }
