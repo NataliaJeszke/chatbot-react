@@ -15,11 +15,11 @@ module.exports = (app) => {
   });
 
   app.post("/api/df_event_query", async (req, res) => {
-    let response = await chatbot.textQuery(
-      req.body.text,
+    let responses = await chatbot.eventQuery(
+      req.body.event,
       req.body.userID,
       req.body.parameters
     );
-    res.send(response[0].queryResult);
+    res.send(responses[0].queryResult);
   });
 };
