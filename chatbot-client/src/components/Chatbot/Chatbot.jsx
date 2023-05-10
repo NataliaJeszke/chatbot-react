@@ -80,7 +80,7 @@ export function Chatbot() {
   }
 
   return (
-    <div className="chatbot-container purple lighten-1">
+    <div className="chatbot-container">
       <div className="chatbot">
         <h2>Hello Librarian!</h2>
         {renderMessages(messages)}
@@ -91,7 +91,7 @@ export function Chatbot() {
           onChange={(event) => setUserText(event.target.value)}
         />
         <button
-          className="btn waves-effect waves-light purple darken-2"
+          className="btn waves-effect waves-light black"
           type="submit"
           name="action"
           onClick={() => df_text_query(userText)}

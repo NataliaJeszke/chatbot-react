@@ -15,4 +15,8 @@
     padding: 10px !important;
     height: auto !important;
     margin-right: 5px !important;
+    background-image: url('../../assets/librarian.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: black !important;
 }
