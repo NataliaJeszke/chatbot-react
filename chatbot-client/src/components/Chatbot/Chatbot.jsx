@@ -21,7 +21,7 @@ export function Chatbot() {
   console.log(messages);
 
   async function df_text_query(userText) {
-    let says = {
+    const userSays = {
       speaks: "me",
       msg: {
         text: {
@@ -29,31 +29,35 @@ export function Chatbot() {
         },
       },
     };
-
-    setMessage(() => [...messages, says]);
-
+  
+    setMessage((messages) => [...messages, userSays]);
+  
     const res = await axios.post("/api/df_text_query", {
       text: userText,
       userID: cookies.get("userID"),
     });
-
+  
+    let botResponded = false;
     for (let msg of res.data.fulfillmentMessages) {
-      says = {
+      const botSays = {
         speaks: "librarian",
         msg: msg,
       };
-      setMessage(() => [...messages, says]);
+      if (!botResponded) {
+        setMessage((messages) => [...messages, botSays]);
+        botResponded = true;
+      }
     }
-
+  
     setUserText("");
   }
 
   async function df_event_query(event) {
     const res = await axios.post("/api/df_event_query", {
-      event,
+      event: event,
       userID: cookies.get("userID"),
     });
-    for (let msg of res.data.response.fulfillmentMessages) {
+    for (let msg of res.data.fulfillmentMessages) {
       let says = {
         speaks: "librarian",
         msg: msg,
@@ -63,7 +67,7 @@ export function Chatbot() {
   }
 
   useEffect(() => {
-    df_text_query("Cześć");
+    df_event_query("Witaj");
 
   }, []);
 
