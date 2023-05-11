@@ -3,7 +3,7 @@ import "./Navigation.css";
 
 export function Navigation() {
   return (
-    <nav className="nav-wrapper active black">
+    <nav className="nav-wrapper active black nav">
       <Link to="/" className="nav-title">
         Librarian
       </Link>

@@ -1,0 +1,13 @@
+footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center !important;
+    margin-top: 50px;
+    padding: 10px;
+    height: 70px;
+    color: azure;
+    position: fixed;
+  bottom: 0;
+  width: 100%;
+}

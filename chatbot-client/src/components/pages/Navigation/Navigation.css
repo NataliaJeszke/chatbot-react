@@ -1,11 +1,12 @@
 .nav{
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
 }
 
 .menu{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     gap: 20px;
     align-items: center;

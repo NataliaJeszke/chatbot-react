@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Chatbot } from "./Chatbot/Chatbot";
 import VideoBg from "../../src/assets/video-bg1.mp4";
+import { Footer } from "./pages/Footer/Footer";
 
 export function App() {
   return (
@@ -42,6 +43,7 @@ export function App() {
             </div>
           </div>
         </div>
+        <Footer />
     </div>
   );
 }
