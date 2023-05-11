@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { v4 as uuid } from "uuid";
@@ -6,6 +6,9 @@ import { Message } from "./Message";
 import "./Chatbot.css";
 
 export function Chatbot() {
+
+  const msgEnd = useRef(null);
+
   const [userText, setUserText] = useState("");
   const [messages, setMessage] = useState([]);
 
@@ -61,7 +64,17 @@ export function Chatbot() {
 
   useEffect(() => {
     df_text_query("Cześć");
+
   }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  function scrollToBottom() {
+    msgEnd.current.scrollIntoView({ behavior: 'smooth' });
+  }
+
 
   function renderMessages(messages) {
     if (messages) {
@@ -84,6 +97,7 @@ export function Chatbot() {
       <div className="chatbot">
         <h2>Hello Librarian!</h2>
         {renderMessages(messages)}
+        <div ref={msgEnd} style={{float: 'left', clear: 'both'}}></div>
         <input
         className="input-field"
           type="text"
