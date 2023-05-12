@@ -73,18 +73,14 @@ export function Chatbot() {
 
   }, []);
 
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, [messages]);
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
-  // function scrollToBottom() {
-  //   msgEnd.current.scrollIntoView({ behavior: 'smooth' });
-  // }
-
-
-  function hide(){
-    setShowBot(!showBot);
+  function scrollToBottom() {
+    msgEnd.current.scrollIntoView({ behavior: 'smooth' });
   }
+
 
 
   function renderMessages(messages) {
@@ -106,6 +102,9 @@ export function Chatbot() {
   
   const handleButtonClick = () => {
     setShowBot(!showBot);
+    if (!showBot) {
+      scrollToBottom();
+    }
   };
 
   return (
@@ -139,6 +138,7 @@ export function Chatbot() {
         </div>
       ) : (
         <div className="chatbot-hidden">
+           <div ref={msgEnd} style={{float: 'left', clear: 'both'}}></div>
         </div>
       )
     }
