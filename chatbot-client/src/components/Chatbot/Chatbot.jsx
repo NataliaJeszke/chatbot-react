@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 import { v4 as uuid } from "uuid";
 import { Message } from "./Message";
 import "./Chatbot.css";
+import 'material-icons/iconfont/material-icons.css';
 
 export function Chatbot() {
 
@@ -11,6 +12,7 @@ export function Chatbot() {
 
   const [userText, setUserText] = useState("");
   const [messages, setMessage] = useState([]);
+  const [showBot, setShowBot] = useState(true);
 
   const cookies = new Cookies();
   if (cookies.get("userID") === undefined) {
@@ -71,12 +73,17 @@ export function Chatbot() {
 
   }, []);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, [messages]);
 
-  function scrollToBottom() {
-    msgEnd.current.scrollIntoView({ behavior: 'smooth' });
+  // function scrollToBottom() {
+  //   msgEnd.current.scrollIntoView({ behavior: 'smooth' });
+  // }
+
+
+  function hide(){
+    setShowBot(!showBot);
   }
 
 
@@ -95,29 +102,46 @@ export function Chatbot() {
       return null;
     }
   }
+  
+  
+  const handleButtonClick = () => {
+    setShowBot(!showBot);
+  };
 
   return (
-    <div className="chatbot-container">
-      <div className="chatbot">
-        <h2>Hello Librarian!</h2>
-        {renderMessages(messages)}
-        <div ref={msgEnd} style={{float: 'left', clear: 'both'}}></div>
-        <input
-        className="input-field"
-          type="text"
-          value={userText}
-          onChange={(event) => setUserText(event.target.value)}
-        />
-        <button
-          className="btn waves-effect waves-light black"
-          type="submit"
-          name="action"
-          onClick={() => df_text_query(userText)}
-        >
-          Submit
-          <i className="material-icons right"></i>
-        </button>
-      </div>
-    </div>
-  );
+    <div className="show-hide-container">
+    <button className="showBtn btn" onClick={handleButtonClick}>
+      {showBot ? <i className="material-icons">expand_more</i> : <i className="material-icons">expand_less</i>}
+    </button>
+    {
+      showBot ? (
+        <div className="chatbot-container">
+          <div className="chatbot">
+            <h2>Hello Librarian!</h2>
+            {renderMessages(messages)}
+            <div ref={msgEnd} style={{float: 'left', clear: 'both'}}></div>
+            <input
+              className="input-field"
+              type="text"
+              value={userText}
+              onChange={(event) => setUserText(event.target.value)}
+            />
+            <button
+              className="btn waves-effect waves-light black"
+              type="submit"
+              name="action"
+              onClick={() => df_text_query(userText)}
+            >
+              Submit
+              <i className="material-icons right"></i>
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="chatbot-hidden">
+        </div>
+      )
+    }
+  </div>
+);
 }
