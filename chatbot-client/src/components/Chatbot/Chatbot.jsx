@@ -4,15 +4,15 @@ import Cookies from "universal-cookie";
 import { v4 as uuid } from "uuid";
 import { Message } from "./Message";
 import "./Chatbot.css";
-import 'material-icons/iconfont/material-icons.css';
+import "material-icons/iconfont/material-icons.css";
 
 export function Chatbot() {
-
   const msgEnd = useRef(null);
 
   const [userText, setUserText] = useState("");
   const [messages, setMessage] = useState([]);
   const [showBot, setShowBot] = useState(true);
+  const [isInputEmpty, setIsInputEmpty] = useState(true);
 
   const cookies = new Cookies();
   if (cookies.get("userID") === undefined) {
@@ -22,7 +22,9 @@ export function Chatbot() {
   console.log(userText);
   console.log(messages);
 
+
   async function df_text_query(userText) {
+    setIsInputEmpty(true);
     const userSays = {
       speaks: "me",
       msg: {
@@ -31,14 +33,14 @@ export function Chatbot() {
         },
       },
     };
-  
+
     setMessage((messages) => [...messages, userSays]);
-  
+
     const res = await axios.post("/api/df_text_query", {
       text: userText,
       userID: cookies.get("userID"),
     });
-  
+
     let botResponded = false;
     for (let msg of res.data.fulfillmentMessages) {
       const botSays = {
@@ -50,7 +52,7 @@ export function Chatbot() {
         botResponded = true;
       }
     }
-  
+
     setUserText("");
   }
 
@@ -70,7 +72,6 @@ export function Chatbot() {
 
   useEffect(() => {
     df_event_query("Witaj");
-
   }, []);
 
   useEffect(() => {
@@ -78,10 +79,8 @@ export function Chatbot() {
   }, [messages]);
 
   function scrollToBottom() {
-    msgEnd.current.scrollIntoView({ behavior: 'smooth' });
+    msgEnd.current.scrollIntoView({ behavior: "smooth" });
   }
-
-
 
   function renderMessages(messages) {
     if (messages) {
@@ -98,8 +97,7 @@ export function Chatbot() {
       return null;
     }
   }
-  
-  
+
   const handleButtonClick = () => {
     setShowBot(!showBot);
     if (!showBot) {
@@ -109,26 +107,33 @@ export function Chatbot() {
 
   return (
     <div className="show-hide-container">
-    <button className="showBtn btn" onClick={handleButtonClick}>
-      {showBot ? <i className="material-icons">expand_more</i> : <i className="material-icons">expand_less</i>}
-    </button>
-    {
-      showBot ? (
+      <button className="showBtn btn" onClick={handleButtonClick}>
+        {showBot ? (
+          <i className="material-icons">expand_more</i>
+        ) : (
+          <i className="material-icons">expand_less</i>
+        )}
+      </button>
+      {showBot ? (
         <div className="chatbot-container">
           <div className="chatbot">
             <h2>Hello Librarian!</h2>
             {renderMessages(messages)}
-            <div ref={msgEnd} style={{float: 'left', clear: 'both'}}></div>
+            <div ref={msgEnd} style={{ float: "left", clear: "both" }}></div>
             <input
               className="input-field"
               type="text"
               value={userText}
-              onChange={(event) => setUserText(event.target.value)}
+              onChange={(event) => {
+                setUserText(event.target.value);
+                setIsInputEmpty(event.target.value.trim() === "");
+              }}
             />
             <button
               className="btn waves-effect waves-light black"
               type="submit"
               name="action"
+              disabled={isInputEmpty}
               onClick={() => df_text_query(userText)}
             >
               Submit
@@ -138,10 +143,9 @@ export function Chatbot() {
         </div>
       ) : (
         <div className="chatbot-hidden">
-           <div ref={msgEnd} style={{float: 'left', clear: 'both'}}></div>
+          <div ref={msgEnd} style={{ float: "left", clear: "both" }}></div>
         </div>
-      )
-    }
-  </div>
-);
+      )}
+    </div>
+  );
 }
