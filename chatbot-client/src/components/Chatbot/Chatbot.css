@@ -24,13 +24,13 @@ h2{
 }
 
 input:focus {
-    border-bottom: 1px solid #f1caf8 !important;
-    box-shadow: 0 1px 0 0 #ecd7f0 !important;
+    border-bottom: 1px solid #a3a3a3 !important;
+    box-shadow: 0 1px 0 0 #b1b1b1 !important;
   }
 
   input {
     margin-top: 20px !important;
-    background-color: #f1caf84d !important;
+    background-color: #4a4a4a4d !important;
   }
 
   .show-hide-container{
