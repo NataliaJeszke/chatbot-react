@@ -86,6 +86,7 @@ export function Chatbot() {
   function handleQuickReplyPayload(event, payload, text) {
     event.preventDefault();
     event.stopPropagation();
+    
 
     this.df_text_query(text);
   }
@@ -118,7 +119,7 @@ export function Chatbot() {
         return <QuickReply
             text={message.msg.payload.fields.text ? message.msg.payload.fields.text : null}
             key={i}
-            replyClick={this._handleQuickReplyPayload}
+            replyClick={handleQuickReplyPayload}
             speaks={message.speaks}
             payload={message.msg.payload.fields.quick_replies.listValue.values}/>;
     }
