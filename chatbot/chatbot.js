@@ -2,8 +2,11 @@
 const dialogflow = require("@google-cloud/dialogflow");
 const config = require("../config/keys");
 const structjson = require("./structjson.js");
+const mongoose = require("mongoose");
+const UnknownInputs = require("../models/Registration");
 
 const projectID = config.googleProjectID;
+const sessionId = config.dialogFlowSessionID;
 
 const credentials = {
   client_email: config.googleClientEmail,
@@ -63,13 +66,28 @@ module.exports = {
     return responses;
   },
   handleAction: function (responses) {
+    let self = module.exports;
     let queryResult = responses[0].queryResult;
     switch (queryResult.action) {
       case "input.unknown":
         if (queryResult.allRequiredParamsPresent) {
+          self.saveRegistration(queryResult.queryText);
         }
         break;
     }
     return responses;
+  },
+
+  saveRegistration: async function (fields) {
+    const registration = new UnknownInputs({
+      text: fields,
+      dateSent: Date.now(),
+    });
+    try {
+      let reg = await registration.save();
+      console.log(reg);
+    } catch (err) {
+      console.log(err);
+    }
   },
 };

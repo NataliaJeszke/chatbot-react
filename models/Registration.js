@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 
 const registrationSchema = new Schema({
-    name: String,
-    address: String,
-    phone: String,
-    email: String,
-    registerDate: Date,
+  text: String,
+  dateSent: Date,
 });
 
-mongoose.model("registration", registrationSchema);
+const UnknownInputs = model("unknown", registrationSchema);
+
+module.exports = UnknownInputs;
