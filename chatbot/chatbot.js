@@ -1,9 +1,7 @@
 "use strict";
 const dialogflow = require("@google-cloud/dialogflow");
 const config = require("../config/keys");
-const { query } = require("express");
 const structjson = require("./structjson.js");
-// const  struct = require("pb-util");
 
 const projectID = config.googleProjectID;
 
@@ -65,6 +63,13 @@ module.exports = {
     return responses;
   },
   handleAction: function (responses) {
+    let queryResult = responses[0].queryResult;
+    switch (queryResult.action) {
+      case "input.unknown":
+        if (queryResult.allRequiredParamsPresent) {
+        }
+        break;
+    }
     return responses;
   },
 };
