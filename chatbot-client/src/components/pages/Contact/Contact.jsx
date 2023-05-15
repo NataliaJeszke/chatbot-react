@@ -1,7 +1,8 @@
 export function Contact(){
     return (
         <div>
-            Contact Form!
+            Contact Form
+            Soon!
         </div>
     )
 }

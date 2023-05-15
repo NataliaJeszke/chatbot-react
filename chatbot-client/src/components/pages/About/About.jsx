@@ -22,7 +22,7 @@ export function About() {
       </p>
       <p>
         If you want to connect Librarian to your digital library and train your
-        own Librarian, contact here.
+        own Librarian, contact njeszke.front@gmail.com.
       </p>
     </div>
   );
