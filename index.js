@@ -1,13 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const cors = require('cors');
+const cors = require("cors");
 
 const config = require("./config/keys");
 const mongoose = require("mongoose");
 mongoose.connect(config.mongoURI, { useNewUrlParser: true });
-
-const cors = require("cors");
 
 app.use(cors());
 app.use(bodyParser.json());
