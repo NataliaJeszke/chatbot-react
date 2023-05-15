@@ -1,4 +1,4 @@
-import "./Landing.css"
+import "./Landing.css";
 export function Landing() {
   return (
     <div className="landing-container">
@@ -11,12 +11,24 @@ export function Landing() {
       </p>
       <p>
         <p>
-          Librarian was based on FBC search service, a Polish website established in 2007, whose primary objective is to collect, process and make available online information on the collections of Polish scientific and cultural institutions.
+          Librarian was based on FBC search service, a Polish website
+          established in 2007, whose primary objective is to collect, process
+          and make available online information on the collections of Polish
+          scientific and cultural institutions.
         </p>
-        Librarian gives you answers on most questions about FBC and
-        digital libraries coopperating with FBC. You can ask about: what is FBC, how to search and navigate through FBC services, also about digital libraries, broken links, digital assets licenses, and more.
+        Librarian gives you answers on most questions about FBC and digital
+        libraries coopperating with FBC. You can ask about: what is FBC, how to
+        search and navigate through FBC services, also about digital libraries,
+        broken links, digital assets licenses, and more.
       </p>
-      <p>Chatbot can be easily used for better experience of using digital libraries pages.</p>
+      <p>
+        Chatbot can be easily used for better experience of using digital
+        libraries pages.
+      </p>
+      <h3>Language</h3>
+      <p>
+        Librarian is trained in <b>Polish</b>
+      </p>
     </div>
   );
 }
