@@ -22,7 +22,6 @@ export function Chatbot() {
   console.log(userText);
   console.log(messages);
 
-
   async function df_text_query(userText) {
     setIsInputEmpty(true);
     const userSays = {
@@ -36,21 +35,33 @@ export function Chatbot() {
 
     setMessage((messages) => [...messages, userSays]);
 
-    const res = await axios.post("/api/df_text_query", {
-      text: userText,
-      userID: cookies.get("userID"),
-    });
+    try {
+      const res = await axios.post("/api/df_text_query", {
+        text: userText,
+        userID: cookies.get("userID"),
+      });
 
-    let botResponded = false;
-    for (let msg of res.data.fulfillmentMessages) {
+      let botResponded = false;
+      for (let msg of res.data.fulfillmentMessages) {
+        const botSays = {
+          speaks: "librarian",
+          msg: msg,
+        };
+        if (!botResponded) {
+          setMessage((messages) => [...messages, botSays]);
+          botResponded = true;
+        }
+      }
+    } catch (err) {
       const botSays = {
         speaks: "librarian",
-        msg: msg,
+        msg: {
+          text: {
+            text: "Problem z połączeniem, muszę się zrestartować, wróć za chwilę!",
+          },
+        },
       };
-      if (!botResponded) {
-        setMessage((messages) => [...messages, botSays]);
-        botResponded = true;
-      }
+      setMessage((messages) => [...messages, botSays]);
     }
 
     setUserText("");
