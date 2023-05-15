@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const cors = require('cors');
 
 const config = require("./config/keys");
 const mongoose = require("mongoose");
