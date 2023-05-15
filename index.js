@@ -6,6 +6,9 @@ const config = require("./config/keys");
 const mongoose = require("mongoose");
 mongoose.connect(config.mongoURI, { useNewUrlParser: true });
 
+const cors = require("cors");
+
+app.use(cors());
 app.use(bodyParser.json());
 
 require("./routes/dialogFlowRoutes")(app);
@@ -13,10 +16,10 @@ require("./routes/dialogFlowRoutes")(app);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
-  const path = require('path');
-  app.get('*', (req,res)=>{
-    res.sendFile(path.resolve(_dirname, 'client', 'build', 'index.html'))
-  })
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(_dirname, "client", "build", "index.html"));
+  });
 }
 
 const PORT = process.env.PORT || 5000;
