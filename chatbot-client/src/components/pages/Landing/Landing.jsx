@@ -26,9 +26,9 @@ export function Landing() {
         libraries pages.
       </p>
       <h3>Language</h3>
-      <p>
+      <h4>
         Librarian is trained in <b>Polish</b>
-      </p>
+      </h4>
     </div>
   );
 }
