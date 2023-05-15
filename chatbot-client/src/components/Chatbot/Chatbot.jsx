@@ -36,10 +36,13 @@ export function Chatbot() {
     setMessage((messages) => [...messages, userSays]);
 
     try {
-      const res = await axios.post("/api/df_text_query", {
-        text: userText,
-        userID: cookies.get("userID"),
-      });
+      const res = await axios.post(
+        "https://chatbot-react.onrender.com/api/df_text_query",
+        {
+          text: userText,
+          userID: cookies.get("userID"),
+        }
+      );
 
       let botResponded = false;
       for (let msg of res.data.fulfillmentMessages) {
@@ -68,10 +71,13 @@ export function Chatbot() {
   }
 
   async function df_event_query(event) {
-    const res = await axios.post("/api/df_event_query", {
-      event: event,
-      userID: cookies.get("userID"),
-    });
+    const res = await axios.post(
+      "https://chatbot-react.onrender.com/api/df_event_query",
+      {
+        event: event,
+        userID: cookies.get("userID"),
+      }
+    );
     for (let msg of res.data.fulfillmentMessages) {
       let says = {
         speaks: "librarian",
