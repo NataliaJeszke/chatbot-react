@@ -6,7 +6,7 @@ Librarian is a chatbot that can be added to your digital library as a friendly a
 
 Librarian was created by a librarian who helped users of libraries and digital libraries through many years with problems such as: search issues, broken links or licenses and rights to digital resources. Chatbot was trained on years of experience of exchange topics between librarians and readers.
 
-Form more information contact me: njeszke.front@gmail.com
+For more information contact me: njeszke.front@gmail.com
 
 ## Technology
 ReactJS, NodeJS with Express, DialogFlow, MongoDB, Materialize CSS.
