@@ -12,8 +12,8 @@ For more information contact me: njeszke.front@gmail.com
 ReactJS, NodeJS with Express, DialogFlow, MongoDB, Materialize CSS.
 
 ## Client and Server
-Client demo : https://chatbot-react-fnov412wq-nataliajeszke.vercel.app/
-Server : https://chatbot-react.onrender.com/ 
+Client demo : Vercel
+Server : Render
 
 ## Librarian flow
 Client is connected to Express.
